@@ -25,6 +25,7 @@ const Items: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [filter, setFilter] = useState<string>("All");
   const location = useLocation();
+
   const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
