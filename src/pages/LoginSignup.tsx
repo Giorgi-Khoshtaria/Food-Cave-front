@@ -27,10 +27,16 @@ const LoginSignUp = () => {
         <meta name="description" content="Your meta description goes here." />
         <link rel="canonical" href="https://www.yourwebsite.com/main" />
         <meta property="og:title" content="Your Page Title" />
-        <meta property="og:description" content="Your meta description goes here." />
+        <meta
+          property="og:description"
+          content="Your meta description goes here."
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.yourwebsite.com/main" />
-        <meta property="og:image" content="https://www.yourwebsite.com/og-image.jpg" />
+        <meta
+          property="og:image"
+          content="https://www.yourwebsite.com/og-image.jpg"
+        />
       </Helmet>
       <Spinner loading={loading} />
       <MainContent loading={loading}>

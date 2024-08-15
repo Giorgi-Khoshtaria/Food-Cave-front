@@ -36,6 +36,8 @@ const Login = () => {
     setLoginEmail("");
     setLoginPassword("");
   };
+
+  axios.defaults.withCredentials = true;
   const url = import.meta.env.VITE_API_URL;
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

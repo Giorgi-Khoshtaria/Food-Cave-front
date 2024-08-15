@@ -33,7 +33,7 @@ const ForgotPassword = () => {
     return passwordRegex.test(newPassword);
   };
   const url = import.meta.env.VITE_API_URL;
-
+  axios.defaults.withCredentials = true;
   const handlePasswordChange = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 

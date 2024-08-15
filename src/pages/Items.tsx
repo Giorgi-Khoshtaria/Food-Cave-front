@@ -35,7 +35,7 @@ const Items: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
-
+  axios.defaults.withCredentials = true;
   const fetchItems = async () => {
     try {
       const response = await axios.get<Item[]>(`${url}/get-items`);

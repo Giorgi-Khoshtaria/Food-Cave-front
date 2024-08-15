@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "../components/spinner/Spinner";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
 const AdminPanel = () => {
   const [formData, setFormData] = useState({
@@ -84,7 +85,7 @@ const AdminPanel = () => {
       toast.error("Please upload all three image");
       return;
     }
-
+    axios.defaults.withCredentials = true;
     const Data = new FormData();
     Data.append("name", formData.name || "");
     Data.append("price", formData.price.toString()); // Convert number to string

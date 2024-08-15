@@ -24,7 +24,7 @@ const ItemsDetails: React.FC = () => {
   const [item, setItem] = useState<Item | null>(null);
   const { addToCart, cartItems } = useCart();
   const [quantity] = useState(1);
-
+  axios.defaults.withCredentials = true;
   const url = import.meta.env.VITE_API_URL;
   console.log(url);
   useEffect(() => {

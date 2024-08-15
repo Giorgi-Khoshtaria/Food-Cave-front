@@ -99,7 +99,7 @@ const Profile = () => {
       reader.readAsDataURL(file);
     }
   };
-
+  axios.defaults.withCredentials = true;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 

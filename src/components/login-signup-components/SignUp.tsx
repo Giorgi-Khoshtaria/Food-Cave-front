@@ -53,7 +53,7 @@ const SignUp = () => {
     setPhoneError("");
   };
   const url = import.meta.env.VITE_API_URL;
-
+  axios.defaults.withCredentials = true;
   const checkUserExistence = async () => {
     try {
       const response = await axios.post(`${url}/checkUserExistence`, {

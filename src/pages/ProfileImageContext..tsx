@@ -1,5 +1,11 @@
 // ProfileImageContext.tsx
-import React, { createContext, useState, useContext, useEffect, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+} from "react";
 
 interface ProfileImage {
   [userId: string]: string | undefined;
@@ -10,12 +16,16 @@ interface ProfileImageContextType {
   getProfileImage: (userId: string) => string | null;
 }
 
-const ProfileImageContext = createContext<ProfileImageContextType | undefined>(undefined);
+const ProfileImageContext = createContext<ProfileImageContextType | undefined>(
+  undefined
+);
 
 export const useProfileImage = () => {
   const context = useContext(ProfileImageContext);
   if (!context) {
-    throw new Error("useProfileImage must be used within a ProfileImageProvider");
+    throw new Error(
+      "useProfileImage must be used within a ProfileImageProvider"
+    );
   }
   return context;
 };
@@ -24,7 +34,9 @@ interface ProfileImageProviderProps {
   children: ReactNode;
 }
 
-export const ProfileImageProvider: React.FC<ProfileImageProviderProps> = ({ children }) => {
+export const ProfileImageProvider: React.FC<ProfileImageProviderProps> = ({
+  children,
+}) => {
   const [profileImages, setProfileImages] = useState<ProfileImage>({});
 
   useEffect(() => {
@@ -43,7 +55,10 @@ export const ProfileImageProvider: React.FC<ProfileImageProviderProps> = ({ chil
     }));
 
     // Store updated profile images in local storage
-    localStorage.setItem("profileImages", JSON.stringify({ ...profileImages, [userId]: image }));
+    localStorage.setItem(
+      "profileImages",
+      JSON.stringify({ ...profileImages, [userId]: image })
+    );
   };
 
   const getProfileImage = (userId: string) => {
@@ -51,7 +66,9 @@ export const ProfileImageProvider: React.FC<ProfileImageProviderProps> = ({ chil
   };
 
   return (
-    <ProfileImageContext.Provider value={{ updateProfileImage, getProfileImage }}>
+    <ProfileImageContext.Provider
+      value={{ updateProfileImage, getProfileImage }}
+    >
       {children}
     </ProfileImageContext.Provider>
   );
