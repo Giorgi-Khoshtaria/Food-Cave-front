@@ -79,7 +79,7 @@ const ItemsDetails: React.FC = () => {
           {/* Main image */}
           <MainImage src={`/uploads/${item.mainImage}`} alt="Main" />
           <img
-            src={`https://industrious-grace-production.up.railway.app//uploads/${item.mainImage}`}
+            src={`https://industrious-grace-production.up.railway.app/uploads/${item.mainImage}`}
             alt="Main Image"
           />
 
