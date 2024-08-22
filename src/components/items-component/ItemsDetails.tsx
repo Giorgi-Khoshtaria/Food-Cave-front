@@ -78,6 +78,11 @@ const ItemsDetails: React.FC = () => {
         <div>
           {/* Main image */}
           <MainImage src={`/uploads/${item.mainImage}`} alt="Main" />
+          <img
+            src={`https://industrious-grace-production.up.railway.app//uploads/${item.mainImage}`}
+            alt="Main Image"
+          />
+
           <ImagesDiv>
             {/* Second image */}
             <Second_Third
