@@ -159,10 +159,6 @@ const AdminPanel = () => {
             encType="multipart/form-data"
           >
             <h1>Add Items</h1>
-            <img
-              src={`https://industrious-grace-production.up.railway.app/uploads/11.PNG`}
-              alt=""
-            />
             <div>
               <NamePrice>
                 <WidthDiv>
