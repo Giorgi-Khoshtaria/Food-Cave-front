@@ -77,16 +77,16 @@ const ItemsDetails: React.FC = () => {
       <Conatiner>
         <div>
           {/* Main image */}
-          <MainImage src={`../../../uploads/${item.mainImage}`} alt="Main" />
+          <MainImage src={`/uploads/${item.mainImage}`} alt="Main" />
           <ImagesDiv>
             {/* Second image */}
             <Second_Third
-              src={`../../../uploads/${item.secondaryImage}`}
+              src={`/uploads/${item.secondaryImage}`}
               alt="Secondary"
             />
             {/* Third image */}
             <Second_Third
-              src={`../../../uploads/${item.tertiaryImage}`}
+              src={`/uploads/${item.tertiaryImage}`}
               alt="Tertiary"
             />
           </ImagesDiv>

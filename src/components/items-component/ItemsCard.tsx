@@ -10,7 +10,13 @@ interface Props {
   courseType: string;
 }
 
-const ItemsCard: React.FC<Props> = ({ title, ingredients, price, mainimage, courseType }) => {
+const ItemsCard: React.FC<Props> = ({
+  title,
+  ingredients,
+  price,
+  mainimage,
+  courseType,
+}) => {
   // Provide a default image URL if image is falsy
 
   return (
@@ -24,7 +30,7 @@ const ItemsCard: React.FC<Props> = ({ title, ingredients, price, mainimage, cour
         <Price>From ${price}</Price>
       </div>
       <div>
-        <ItemImage src={`../../../uploads/${mainimage}`} alt={title} />
+        <ItemImage src={`/uploads/${mainimage}`} alt={title} />
       </div>
     </ItemContainer>
   );

@@ -62,7 +62,7 @@ const Cart: React.FC = () => {
           {cartItems.map((item) => (
             <Content key={item.id}>
               <Image>
-                <img src={`../../../uploads/${item.mainImage}`} alt="" />
+                <img src={`/uploads/${item.mainImage}`} alt="" />
               </Image>
               <Title>{item.name}</Title>
               <Price>${item.price}</Price>
