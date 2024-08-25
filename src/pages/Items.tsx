@@ -1,3 +1,4 @@
+// Items.tsx
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
@@ -13,20 +14,18 @@ interface Item {
   name: string;
   ingredients: string;
   price: number;
-  mainImage?: string; // Base64 or URL
-  secondaryImage?: string; // Base64 or URL
-  tertiaryImage?: string; // Base64 or URL
+  mainImage?: string;
+  secondaryImage?: string;
+  tertiaryImage?: string;
   descriptions?: string;
   courseType: string;
 }
-
-// Helper function to check if image data is base64
-const isBase64 = (str: string) => /^data:image\/\w+;base64,/.test(str);
 
 const Items: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [filter, setFilter] = useState<string>("All");
   const location = useLocation();
+
   const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -36,7 +35,6 @@ const Items: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
-
   const fetchItems = async () => {
     try {
       const response = await axios.get<Item[]>(`${url}/get-items`);
@@ -106,7 +104,7 @@ const Items: React.FC = () => {
               <option value="Dessert">Dessert</option>
               <option value="Cocktail">Cocktail</option>
             </select>
-          </Select>
+          </Select>{" "}
           <ItemsContainer>
             {filteredItems.map((item, index) => (
               <Link
@@ -118,13 +116,7 @@ const Items: React.FC = () => {
                   title={item.name}
                   ingredients={item.ingredients}
                   price={item.price}
-                  mainimage={
-                    item.mainImage
-                      ? isBase64(item.mainImage)
-                        ? item.mainImage
-                        : `/uploads/${item.mainImage}`
-                      : "/default-image.jpg"
-                  }
+                  mainimage={item.mainImage || "/default-image.jpg"}
                   courseType={item.courseType}
                 />
               </Link>

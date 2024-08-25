@@ -17,7 +17,8 @@ const ItemsCard: React.FC<Props> = ({
   mainimage,
   courseType,
 }) => {
-  // Provide a default image URL if image is falsy
+  // Function to check if the image source is a base64 string
+  const isBase64 = (str: string) => str.startsWith("data:image");
 
   return (
     <ItemContainer>
@@ -30,7 +31,10 @@ const ItemsCard: React.FC<Props> = ({
         <Price>From ${price}</Price>
       </div>
       <div>
-        <ItemImage src={`/uploads/${mainimage}`} alt={title} />
+        <ItemImage
+          src={isBase64(mainimage) ? mainimage : `/uploads/${mainimage}`}
+          alt={title}
+        />
       </div>
     </ItemContainer>
   );
