@@ -12,9 +12,9 @@ interface Item {
   name: string;
   ingredients: string;
   price: number;
-  mainImage: string;
-  secondaryImage: string;
-  tertiaryImage: string;
+  mainImage: string; // Base64 or URL
+  secondaryImage: string; // Base64 or URL
+  tertiaryImage: string; // Base64 or URL
   descriptions: string;
   quantity: number;
 }
@@ -27,6 +27,7 @@ const ItemsDetails: React.FC = () => {
   axios.defaults.withCredentials = true;
   const url = import.meta.env.VITE_API_URL;
   console.log(url);
+
   useEffect(() => {
     const fetchItemDetails = async () => {
       try {
@@ -41,11 +42,12 @@ const ItemsDetails: React.FC = () => {
 
     // Cleanup function to clear item details when unmounting
     return () => setItem(null);
-  }, [id]); // Fetch item details whenever ID changes
+  }, [id, quantity]); // Fetch item details whenever ID or quantity changes
 
   if (!item) {
     return <div>Loading...</div>; // Placeholder while loading item details
   }
+
   const handleOrder = () => {
     // Check if the item is already in the cart
     const isItemInCart = cartItems.some((cartItem) => cartItem.id === item._id);
@@ -71,56 +73,67 @@ const ItemsDetails: React.FC = () => {
     }
   };
 
+  // Helper function to check if image data is base64
+  const isBase64 = (str: string) => /^data:image\/\w+;base64,/.test(str);
+
   return (
     <div>
       <ToastContainer />
-      <Conatiner>
+      <Container>
         <div>
           {/* Main image */}
-          <MainImage src={`/uploads/${item.mainImage}`} alt="Main" />
-          <img
-            src={`https://industrious-grace-production.up.railway.app/uploads/${item.mainImage}`}
-            alt="Main Image"
-          />
+          {isBase64(item.mainImage) ? (
+            <MainImage src={item.mainImage} alt="Main" />
+          ) : (
+            <MainImage src={`/uploads/${item.mainImage}`} alt="Main" />
+          )}
 
           <ImagesDiv>
-            {/* Second image */}
-            <Second_Third
-              src={`/uploads/${item.secondaryImage}`}
-              alt="Secondary"
-            />
-            {/* Third image */}
-            <Second_Third
-              src={`/uploads/${item.tertiaryImage}`}
-              alt="Tertiary"
-            />
+            {/* Secondary image */}
+            {isBase64(item.secondaryImage) ? (
+              <Second_Third src={item.secondaryImage} alt="Secondary" />
+            ) : (
+              <Second_Third
+                src={`/uploads/${item.secondaryImage}`}
+                alt="Secondary"
+              />
+            )}
+            {/* Tertiary image */}
+            {isBase64(item.tertiaryImage) ? (
+              <Second_Third src={item.tertiaryImage} alt="Tertiary" />
+            ) : (
+              <Second_Third
+                src={`/uploads/${item.tertiaryImage}`}
+                alt="Tertiary"
+              />
+            )}
           </ImagesDiv>
         </div>
-        <ItemCOntent>
+        <ItemContent>
           {/* Name */}
-          <h3> Name of the Dish:</h3>
+          <h3>Name of the Dish:</h3>
           <p>{item.name}</p>
           {/* Ingredients */}
-          <h3> Ingredients of the Dish:</h3>
+          <h3>Ingredients of the Dish:</h3>
           <p>{item.ingredients}</p>
           {/* Price */}
           <h3>Price of the Dish:</h3>
-          <p> From $ {item.price}</p>
+          <p>From ${item.price}</p>
           <h3>Description of the Dish:</h3>
           {/* Description */}
           <p>{item.descriptions}</p>
           <div onClick={handleOrder}>
             <button>Order Now</button>
           </div>
-        </ItemCOntent>
-      </Conatiner>
+        </ItemContent>
+      </Container>
     </div>
   );
 };
 
 export default ItemsDetails;
 
-const Conatiner = styled.div`
+const Container = styled.div`
   margin-top: 50px;
   display: flex;
   align-items: top;
@@ -138,6 +151,7 @@ const ImagesDiv = styled.div`
   align-items: center;
   gap: 20px;
 `;
+
 const MainImage = styled.img`
   width: 580px;
   height: 330px;
@@ -154,8 +168,8 @@ const MainImage = styled.img`
   @media (max-width: 550px) {
     width: 320px;
   }
-  /* background-image: url(${(props) => props.src}); */
 `;
+
 const Second_Third = styled.img`
   width: 280px;
   height: 200px;
@@ -169,13 +183,12 @@ const Second_Third = styled.img`
   @media (max-width: 750px) {
     width: 200px;
   }
-  @media (max-width: 750px) {
+  @media (max-width: 550px) {
     width: 150px;
   }
-
-  /* background-image: url(${(props) => props.src}); */
 `;
-const ItemCOntent = styled.div`
+
+const ItemContent = styled.div`
   margin-bottom: 20px;
   h3 {
     font-size: 24px;
