@@ -7,7 +7,13 @@ import { useCart } from "./CartContext";
 import { useAuth } from "../login-signup-components/AuthContext";
 import { useNavigate } from "react-router-dom";
 const Cart: React.FC = () => {
-  const { cartItems, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } = useCart();
+  const {
+    cartItems,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    clearCart,
+  } = useCart();
   const [email, setEmail] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [district, setDistrict] = useState("");
@@ -67,9 +73,11 @@ const Cart: React.FC = () => {
               <Title>{item.name}</Title>
               <Price>${item.price}</Price>
               <FlexDiv>
-                <span onClick={() => increaseQuantity(item.id)}>+</span> {/* Pass item ID */}
+                <span onClick={() => increaseQuantity(item.id)}>+</span>{" "}
+                {/* Pass item ID */}
                 <span>{item.quantity}</span>
-                <span onClick={() => decreaseQuantity(item.id)}>-</span> {/* Pass item ID */}
+                <span onClick={() => decreaseQuantity(item.id)}>-</span>{" "}
+                {/* Pass item ID */}
               </FlexDiv>
               <Total>${(item.price * item.quantity).toFixed(2)}</Total>
               <Action>
@@ -85,7 +93,11 @@ const Cart: React.FC = () => {
               <h1>Card Details</h1>
               <div>
                 <p>Email</p>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
               <div>
                 <p> Card Number</p>
@@ -100,11 +112,19 @@ const Cart: React.FC = () => {
               <h1>Address</h1>
               <div>
                 <p>District</p>
-                <input type="text" value={district} onChange={(e) => setDistrict(e.target.value)} />
+                <input
+                  type="text"
+                  value={district}
+                  onChange={(e) => setDistrict(e.target.value)}
+                />
               </div>
               <div>
                 <p>Street</p>
-                <input type="text" value={street} onChange={(e) => setStreet(e.target.value)} />
+                <input
+                  type="text"
+                  value={street}
+                  onChange={(e) => setStreet(e.target.value)}
+                />
               </div>
               <TotalContent>
                 <p>Total:</p>

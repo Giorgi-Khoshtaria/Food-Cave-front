@@ -39,7 +39,7 @@ const Items: React.FC = () => {
     try {
       const response = await axios.get<Item[]>(`${url}/get-items`);
       setItems(response.data);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.error("Error fetching items:", error);
     }

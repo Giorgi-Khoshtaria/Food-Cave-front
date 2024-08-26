@@ -26,7 +26,7 @@ const ItemsDetails: React.FC = () => {
   const [quantity] = useState(1);
   axios.defaults.withCredentials = true;
   const url = import.meta.env.VITE_API_URL;
-  console.log(url);
+  // console.log(url);
 
   useEffect(() => {
     const fetchItemDetails = async () => {
